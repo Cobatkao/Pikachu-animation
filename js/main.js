@@ -1,20 +1,45 @@
-function loadCode(prefix, code, fn) {
-  let container = document.querySelector('#code')
-  let styleTag = document.querySelector('#styleTag')
-  let n, timeout
-  n = 0
-  timeout = setTimeout( function run() {
-    n += 1
-    container.innerHTML = code.substring(0, n)
-    styleTag.innerHTML = code.substring(0, n)
-    container.scrollTop = container.scrollHeight
-    if (n < code.length) {
-      timeout = setTimeout(run, 6)
-    } else {
-      fn && fn.call()
-    }
-  }, 10);
-}
+!function() {
+
+  $(function() {
+    $('.action').on('click', 'button', function(e) {
+      let $button = $(e.currentTarget) //监听的button
+      let speed = $button.attr('data-speed')
+      // console.log(speed)
+      $button.addClass('active').siblings('.active').removeClass('active') //button切换
+
+      switch(speed) {
+        case 'slow':
+          duration = 100
+          break
+        case 'normal':
+          duration = 50
+          break
+        case 'fast':
+          duration = 10  
+          break
+      }
+    })
+  })
+
+  var duration = 20
+
+  function loadCode(prefix, code, fn) {
+    let container = document.querySelector('#code')
+    let styleTag = document.querySelector('#styleTag')
+    let n, timeout
+    n = 0
+    setTimeout( function run() {
+      n += 1
+      container.innerHTML = code.substring(0, n)
+      styleTag.innerHTML = code.substring(0, n)
+      container.scrollTop = container.scrollHeight
+      if (n < code.length) {
+        setTimeout(run, duration)
+      } else {
+        fn && fn.call()
+      }
+    }, duration);
+  }
 
   let code =  `
   .nose {
@@ -126,9 +151,9 @@ function loadCode(prefix, code, fn) {
     transform: translateX(-50%);
   }
   /*
-   * 我的皮卡丘画好了，你喜欢吗~
-   * /
+  * 我的皮卡丘画好了，你喜欢吗~
+  * /
 `
-loadCode('', code).call()
+loadCode('', code)
 
-
+  }.call()
