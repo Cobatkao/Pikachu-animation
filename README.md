@@ -5,4 +5,4 @@
 
 - [静态版预览地址](http://isaacgao.cn/Pikachu-with-pure-css/pikachu_v1.0/pikachu.html)
 
-- [动态版预览地址(可调速)](http://isaacgao.cn/Pikachu-with-pure-css/index.html)
+- [动态版预览地址(可调速)](http://isaacgao.cn/Pikachu-animation/index.html)
